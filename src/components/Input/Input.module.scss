@@ -53,6 +53,10 @@
     padding-left: $spacing-8; // Space for icon
 }
 
+.hasRightIcon {
+    padding-right: $spacing-8; // Space for right icon
+}
+
 .icon {
     position: absolute;
     left: $spacing-3;
@@ -60,6 +64,19 @@
     display: flex;
     align-items: center;
     pointer-events: none;
+}
+
+.rightIcon {
+    position: absolute;
+    right: $spacing-3;
+    color: $text-light;
+    display: flex;
+    align-items: center;
+    @include transition-base;
+
+    &:hover {
+        color: $text-primary;
+    }
 }
 
 .hasError {

@@ -6,6 +6,8 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     error?: string;
     icon?: React.ReactNode;
     fullWidth?: boolean;
+    rightIcon?: React.ReactNode;
+    onRightIconClick?: () => void;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -15,6 +17,8 @@ const Input: React.FC<InputProps> = ({
     fullWidth = true,
     className = '',
     id,
+    rightIcon,
+    onRightIconClick,
     ...props
 }) => {
     const inputId = id || props.name;
@@ -26,9 +30,18 @@ const Input: React.FC<InputProps> = ({
                 {icon && <span className={styles.icon}>{icon}</span>}
                 <input
                     id={inputId}
-                    className={`${styles.input} ${error ? styles.hasError : ''} ${icon ? styles.hasIcon : ''}`}
+                    className={`${styles.input} ${error ? styles.hasError : ''} ${icon ? styles.hasIcon : ''} ${rightIcon ? styles.hasRightIcon : ''}`}
                     {...props}
                 />
+                {rightIcon && (
+                    <span
+                        className={styles.rightIcon}
+                        onClick={onRightIconClick}
+                        style={{ cursor: onRightIconClick ? 'pointer' : 'default' }}
+                    >
+                        {rightIcon}
+                    </span>
+                )}
             </div>
             {error && <span className={styles.errorMessage}>{error}</span>}
         </div>

@@ -4,7 +4,7 @@ import AuthLayout from '../../components/AuthLayout';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Link from 'next/link';
-import { FiUser, FiMail, FiLock } from 'react-icons/fi';
+import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import styles from '../login/Login.module.scss'; // Reuse styles for links
 
 const Register: React.FC = () => {
@@ -12,12 +12,13 @@ const Register: React.FC = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        await register(name, email);
+        await register(name, email, password);
         setIsLoading(false);
     };
 
@@ -47,11 +48,13 @@ const Register: React.FC = () => {
                 />
                 <Input
                     label="Password"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="Create a strong password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     icon={<FiLock />}
+                    rightIcon={showPassword ? <FiEyeOff /> : <FiEye />}
+                    onRightIconClick={() => setShowPassword(!showPassword)}
                     required
                 />
 

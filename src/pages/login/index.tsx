@@ -4,19 +4,20 @@ import AuthLayout from '../../components/AuthLayout';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Link from 'next/link';
-import { FiMail, FiLock } from 'react-icons/fi';
+import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import styles from './Login.module.scss'; // We'll create a small local style for page specific links
 
 const Login: React.FC = () => {
     const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        await login(email); // In a real app, pass password too
+        await login(email, password);
         setIsLoading(false);
     };
 
@@ -37,11 +38,13 @@ const Login: React.FC = () => {
                 />
                 <Input
                     label="Password"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     icon={<FiLock />}
+                    rightIcon={showPassword ? <FiEyeOff /> : <FiEye />}
+                    onRightIconClick={() => setShowPassword(!showPassword)}
                     required
                 />
                 <div className={styles.forgotPassword}>
