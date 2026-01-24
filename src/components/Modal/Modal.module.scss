@@ -1,39 +1,7 @@
 @import '../../styles/variables';
 
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    backdrop-filter: blur(2px);
-    padding: $spacing-4;
-}
-
-.modal {
-    background-color: $background-white;
-    border-radius: $radius-lg;
-    box-shadow: $shadow-lg;
-    width: 100%;
-    max-width: 500px;
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    animation: slideIn 0.2s ease-out;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: $spacing-4 $spacing-6;
-    border-bottom: 1px solid $border-color;
-}
+// We can target the bootstrap modal classes via the passed className if needed
+// or just use these for the inner content styling
 
 .title {
     font-size: $font-size-lg;
@@ -41,41 +9,21 @@
     color: $text-primary;
 }
 
-.closeButton {
-    padding: $spacing-2;
-    color: $text-secondary;
-    border-radius: $radius-md;
-
-    &:hover {
-        background-color: $background-light;
-        color: $text-primary;
-    }
+// Override bootstrap modal content if needed
+.bootstrapModalContent {
+    border-radius: $radius-lg !important;
+    border: none !important;
+    box-shadow: $shadow-lg !important;
 }
 
 .content {
-    padding: $spacing-6;
-    overflow-y: auto;
-    flex: 1;
+    // padding is handled by modal-body usually, but we can add more if needed
+    color: $text-secondary;
 }
 
 .footer {
-    padding: $spacing-4 $spacing-6;
-    border-top: 1px solid $border-color;
-    display: flex;
-    justify-content: flex-end;
-    gap: $spacing-4;
+    // Bootstrap footer already has flex/align
+    border-top: 1px solid $border-color !important;
     background-color: $background-light;
     border-radius: 0 0 $radius-lg $radius-lg;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
 }
