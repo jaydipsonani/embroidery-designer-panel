@@ -1,0 +1,124 @@
+@import '../../styles/variables';
+
+.container {
+    margin-bottom: $spacing-6;
+}
+
+.dropzone {
+    border: 2px dashed $border-color;
+    border-radius: $radius-lg;
+    padding: $spacing-8;
+    text-align: center;
+    cursor: pointer;
+    @include transition-base;
+    background-color: $background-light;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        border-color: $primary-color;
+        background-color: rgba($primary-color, 0.05);
+    }
+
+    &.active {
+        border-color: $primary-color;
+        background-color: rgba($primary-color, 0.1);
+    }
+
+    &.hasFile {
+        padding: 0;
+        border: none;
+    }
+}
+
+.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-2;
+    color: $text-secondary;
+}
+
+.icon {
+    font-size: 2rem;
+    color: $primary-color;
+}
+
+.previewContainer {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: #000;
+
+    &:hover .overlay {
+        opacity: 1;
+    }
+}
+
+.previewImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; // Changed to contain to show full design
+    background-color: $background-light;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    @include transition-base;
+    font-size: $font-size-sm;
+    gap: $spacing-2;
+
+    svg {
+        font-size: 1.5rem;
+    }
+}
+
+.fileList {
+    margin-top: $spacing-4;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+}
+
+.fileItem {
+    display: flex;
+    align-items: center;
+    padding: $spacing-2 $spacing-3;
+    background-color: $background-white;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+}
+
+.fileIcon {
+    margin-right: $spacing-3;
+    color: $text-secondary;
+}
+
+.fileName {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: $spacing-3;
+}
+
+.removeButton {
+    padding: $spacing-1;
+    color: $text-light;
+
+    &:hover {
+        color: $danger-color;
+    }
+}

@@ -1,0 +1,53 @@
+@import '../../styles/variables';
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $background-light;
+    padding: $spacing-4;
+    background: linear-gradient(135deg, $background-light 0%, #e0e7ff 100%);
+}
+
+.card {
+    width: 100%;
+    max-width: 450px;
+    background-color: $background-white;
+    padding: $spacing-8;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
+    @include transition-base;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: $spacing-8;
+}
+
+.title {
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: $spacing-2;
+}
+
+.subtitle {
+    color: $text-secondary;
+    font-size: $font-size-sm;
+}
+
+.content {
+    margin-bottom: $spacing-6;
+}
+
+.footer {
+    text-align: center;
+    border-top: 1px solid $border-color;
+    padding-top: $spacing-4;
+}
+
+.copyright {
+    font-size: $font-size-xs;
+    color: $text-light;
+}

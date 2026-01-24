@@ -1,0 +1,100 @@
+@import '../../styles/variables';
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    font-weight: 500;
+    border-radius: $radius-md;
+    cursor: pointer;
+    @include transition-base;
+    position: relative;
+    overflow: hidden;
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+}
+
+// Variants
+.primary {
+    background-color: $primary-color;
+    color: white;
+
+    &:hover:not(:disabled) {
+        background-color: $primary-hover;
+    }
+}
+
+.secondary {
+    background-color: white;
+    border-color: $border-color;
+    color: $text-primary;
+
+    &:hover:not(:disabled) {
+        background-color: $background-light;
+        border-color: darken($border-color, 5%);
+    }
+}
+
+.outline {
+    background-color: transparent;
+    border-color: $primary-color;
+    color: $primary-color;
+
+    &:hover:not(:disabled) {
+        background-color: rgba($primary-color, 0.05);
+    }
+}
+
+.danger {
+    background-color: $danger-color;
+    color: white;
+
+    &:hover:not(:disabled) {
+        background-color: darken($danger-color, 10%);
+    }
+}
+
+// Sizes
+.sm {
+    padding: $spacing-1 $spacing-3;
+    font-size: $font-size-xs;
+}
+
+.md {
+    padding: $spacing-2 $spacing-4;
+    font-size: $font-size-sm;
+}
+
+.lg {
+    padding: $spacing-3 $spacing-6;
+    font-size: $font-size-base;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+    margin-right: $spacing-2;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

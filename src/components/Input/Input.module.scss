@@ -1,0 +1,76 @@
+@import '../../styles/variables';
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+    margin-bottom: $spacing-4;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.label {
+    font-size: $font-size-sm;
+    font-weight: 500;
+    color: $text-secondary;
+}
+
+.inputContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    padding: $spacing-2 $spacing-3;
+    font-size: $font-size-sm;
+    color: $text-primary;
+    background-color: $background-white;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    @include transition-base;
+
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+    }
+
+    &::placeholder {
+        color: $text-light;
+    }
+
+    &:disabled {
+        background-color: $background-light;
+        cursor: not-allowed;
+    }
+}
+
+.hasIcon {
+    padding-left: $spacing-8; // Space for icon
+}
+
+.icon {
+    position: absolute;
+    left: $spacing-3;
+    color: $text-light;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.hasError {
+    border-color: $danger-color;
+
+    &:focus {
+        box-shadow: 0 0 0 2px rgba($danger-color, 0.1);
+    }
+}
+
+.errorMessage {
+    font-size: $font-size-xs;
+    color: $danger-color;
+}

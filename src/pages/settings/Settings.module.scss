@@ -1,0 +1,52 @@
+@import '../../styles/variables';
+
+.container {
+    max-width: 800px;
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    margin-bottom: $spacing-2;
+
+    h2 {
+        font-size: $font-size-xl;
+        font-weight: 600;
+    }
+
+    svg {
+        font-size: 1.5rem;
+        color: $primary-color;
+    }
+}
+
+.sectionDesc {
+    color: $text-secondary;
+    margin-bottom: $spacing-6;
+}
+
+.formCard {
+    background-color: $background-white;
+    padding: $spacing-8;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
+    border: 1px solid $border-color;
+}
+
+.grid {
+    display: grid;
+    gap: $spacing-4;
+    margin-bottom: $spacing-6;
+
+    @media(min-width: 640px) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: $spacing-6;
+    border-top: 1px solid $border-color;
+}

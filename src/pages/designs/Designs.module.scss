@@ -1,0 +1,206 @@
+@import '../../styles/variables';
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: $spacing-6;
+}
+
+.tableCard {
+    background-color: $background-white;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
+    overflow: hidden;
+    border: 1px solid $border-color;
+    overflow-x: auto; // Allow horizontal scroll
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; // Ensure scroll on mobile
+
+    th {
+        text-align: left;
+        padding: $spacing-4 $spacing-6;
+        font-size: $font-size-xs;
+        text-transform: uppercase;
+        color: $text-secondary;
+        background-color: $background-light;
+        border-bottom: 1px solid $border-color;
+        font-weight: 600;
+    }
+
+    td {
+        padding: $spacing-4 $spacing-6;
+        font-size: $font-size-sm;
+        color: $text-primary;
+        border-bottom: 1px solid $border-color;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+}
+
+.nameCell {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+}
+
+.thumbnail {
+    width: 48px;
+    height: 48px;
+    background-color: $background-light;
+    border-radius: $radius-sm;
+    border: 1px solid $border-color;
+    object-fit: cover;
+}
+
+.nameContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.designName {
+    font-weight: 600;
+    color: $text-primary;
+}
+
+.designCategory {
+    font-size: $font-size-xs;
+    color: $text-secondary;
+}
+
+.actionsCell {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.actionBtn {
+    padding: $spacing-2;
+    color: $text-secondary;
+    border-radius: $radius-md;
+    margin-left: $spacing-2;
+    @include transition-base;
+
+    &:hover {
+        background-color: $background-light;
+        color: $primary-color;
+    }
+
+    &.delete:hover {
+        color: $danger-color;
+        background-color: rgba($danger-color, 0.1);
+    }
+}
+
+// Modal Styles
+.viewContent {
+    display: flex;
+    gap: $spacing-6;
+    flex-direction: column;
+
+    @media(min-width: 640px) {
+        flex-direction: row;
+    }
+}
+
+.previewLarge {
+    width: 100%;
+    height: 200px;
+    background-color: $background-light;
+    border-radius: $radius-md;
+    flex-shrink: 0;
+    object-fit: contain;
+
+    @media(min-width: 640px) {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+.viewDetails {
+    flex: 1;
+
+    h4 {
+        font-size: $font-size-lg;
+        font-weight: 700;
+        margin-bottom: $spacing-2;
+    }
+}
+
+.metaRow {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    margin-bottom: $spacing-4;
+    color: $text-secondary;
+    font-size: $font-size-sm;
+}
+
+.priceTag {
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: $spacing-4;
+}
+
+.statBox {
+    background-color: $background-light;
+    padding: $spacing-3;
+    border-radius: $radius-md;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: $font-size-xs;
+        color: $text-secondary;
+    }
+}
+
+.editContent {
+    padding-top: $spacing-2;
+}
+
+.statusSection {
+    background-color: $background-light;
+    padding: $spacing-4;
+    border-radius: $radius-md;
+    margin-top: $spacing-4;
+
+    label {
+        display: block;
+        font-size: $font-size-xs;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $text-secondary;
+        margin-bottom: $spacing-3;
+    }
+}
+
+.statusToggle {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-2;
+}
+
+.helperText {
+    font-size: $font-size-xs;
+    color: $text-light;
+}
+
+.priceInput {
+    width: 100%;
+    padding: $spacing-2 $spacing-3;
+    font-size: $font-size-base;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+    }
+}

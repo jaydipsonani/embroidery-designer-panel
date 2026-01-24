@@ -1,0 +1,150 @@
+@import '../../styles/variables';
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $spacing-6;
+    margin-bottom: $spacing-8;
+}
+
+.statCard {
+    background-color: $background-white;
+    padding: $spacing-6;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
+    border: 1px solid $border-color;
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+}
+
+.statIcon {
+    width: 48px;
+    height: 48px;
+    background-color: rgba($primary-color, 0.1);
+    color: $primary-color;
+    border-radius: $radius-full;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+
+    &.green {
+        background-color: rgba($success-color, 0.1);
+        color: $success-color;
+    }
+
+    &.orange {
+        background-color: rgba($warning-color, 0.1);
+        color: $warning-color;
+    }
+}
+
+.statInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.statLabel {
+    font-size: $font-size-xs;
+    color: $text-secondary;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.statValue {
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    color: $text-primary;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: $spacing-6;
+}
+
+.tableCard {
+    background-color: $background-white;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
+    overflow: hidden;
+    border: 1px solid $border-color;
+    overflow-x: auto; // Allow horizontal scroll
+    -webkit-overflow-scrolling: touch;
+}
+
+.cardHeader {
+    padding: $spacing-4 $spacing-6;
+    border-bottom: 1px solid $border-color;
+
+    h3 {
+        font-size: $font-size-lg;
+        font-weight: 600;
+    }
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; // Ensure scroll on mobile
+
+    th {
+        text-align: left;
+        padding: $spacing-4 $spacing-6;
+        font-size: $font-size-xs;
+        text-transform: uppercase;
+        color: $text-secondary;
+        background-color: $background-light;
+        border-bottom: 1px solid $border-color;
+        font-weight: 600;
+    }
+
+    td {
+        padding: $spacing-4 $spacing-6;
+        font-size: $font-size-sm;
+        color: $text-primary;
+        border-bottom: 1px solid $border-color;
+    }
+}
+
+.descCell {
+    font-weight: 500;
+}
+
+.type {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    font-size: $font-size-xs;
+    font-weight: 600;
+
+    &.credit {
+        color: $success-color;
+    }
+
+    &.debit {
+        color: $text-secondary;
+    }
+}
+
+.textGreen {
+    color: $success-color;
+    font-weight: 600;
+}
+
+.textRed {
+    color: $text-primary;
+}
+
+.modalText {
+    margin-bottom: $spacing-4;
+    color: $text-secondary;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-4;
+    margin-top: $spacing-6;
+}

@@ -1,0 +1,81 @@
+@import 'variables';
+
+.welcomeSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-8;
+    background-color: $background-white;
+    padding: $spacing-6;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
+}
+
+.welcomeText {
+    h2 {
+        font-size: $font-size-xl;
+        font-weight: 700;
+        margin-bottom: $spacing-1;
+    }
+
+    p {
+        color: $text-secondary;
+    }
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: $spacing-6;
+    margin-bottom: $spacing-8;
+}
+
+.statCard {
+    background-color: $background-white;
+    padding: $spacing-6;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
+    border: 1px solid $border-color;
+
+    h3 {
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        font-weight: 500;
+        margin-bottom: $spacing-2;
+    }
+}
+
+.statValue {
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: $spacing-1;
+}
+
+.statLabel {
+    font-size: $font-size-xs;
+    color: $text-light;
+}
+
+.emptyState {
+    background-color: $background-white;
+    padding: $spacing-12;
+    border-radius: $radius-lg;
+    text-align: center;
+    border: 2px dashed $border-color;
+
+    h3 {
+        margin-top: $spacing-4;
+        font-weight: 600;
+    }
+
+    p {
+        color: $text-secondary;
+        margin-bottom: $spacing-6;
+    }
+}
+
+.emptyIcon {
+    font-size: 3rem;
+    color: $text-light;
+}
