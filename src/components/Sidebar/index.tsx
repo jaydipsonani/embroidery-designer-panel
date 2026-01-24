@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from './Sidebar.module.scss';
-import { FiGrid, FiUploadCloud, FiLayers, FiLogOut, FiSettings, FiDollarSign, FiX } from 'react-icons/fi';
+import { FiGrid, FiUploadCloud, FiLayers, FiLogOut, FiSettings, FiDollarSign, FiX, FiBarChart2 } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 
 interface SidebarProps {
@@ -20,6 +20,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         { label: 'Dashboard', path: '/', icon: <FiGrid /> },
         { label: 'My Designs', path: '/designs', icon: <FiLayers /> },
         { label: 'Upload Design', path: '/designs/create', icon: <FiUploadCloud /> },
+        { label: 'Analytics', path: '/analytics', icon: <FiBarChart2 /> },
         { label: 'Wallet', path: '/wallet', icon: <FiDollarSign /> }
     ];
 

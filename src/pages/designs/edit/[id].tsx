@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import DashboardLayout from '../../../components/DashboardLayout';
-import Button from '../../../components/Button';
 import DesignForm from '../../../components/DesignForm';
 import { useRouter } from 'next/router';
 import { toastSuccess, toastError } from '../../../lib';
