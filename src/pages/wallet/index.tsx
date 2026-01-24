@@ -5,6 +5,7 @@ import Badge from '../../components/Badge';
 import Modal from '../../components/Modal';
 import Input from '../../components/Input';
 import styles from './Wallet.module.scss';
+import { toastSuccess } from '../../lib';
 import { FiDollarSign, FiArrowUpRight, FiArrowDownLeft, FiClock } from 'react-icons/fi';
 
 // Mock Data
@@ -28,7 +29,7 @@ const Wallet: React.FC = () => {
         setIsLoading(false);
         setIsWithdrawModalOpen(false);
         setWithdrawAmount('');
-        alert('Withdrawal request sent successfully!');
+        toastSuccess('Withdrawal request sent successfully!');
     };
 
     return (

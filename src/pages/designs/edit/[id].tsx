@@ -3,7 +3,7 @@ import DashboardLayout from '../../../components/DashboardLayout';
 import Button from '../../../components/Button';
 import DesignForm from '../../../components/DesignForm';
 import { useRouter } from 'next/router';
-import { toast } from 'react-hot-toast';
+import { toastSuccess, toastError } from '../../../lib';
 
 // Mock Data (Duplicated for now, ideally in a separate mock file or context)
 const MOCK_DESIGNS = [
@@ -53,7 +53,7 @@ const EditDesign: React.FC = () => {
                     selectedFormats: foundDesign.formats
                 });
             } else {
-                toast.error("Design not found");
+                toastError("Design not found");
                 router.push('/designs');
             }
         }
@@ -65,7 +65,7 @@ const EditDesign: React.FC = () => {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000));
         setIsLoading(false);
-        toast.success("Design updated successfully!");
+        toastSuccess("Design updated successfully!");
         router.push('/designs');
     };
 

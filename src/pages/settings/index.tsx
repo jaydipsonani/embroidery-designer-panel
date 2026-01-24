@@ -3,6 +3,7 @@ import DashboardLayout from '../../components/DashboardLayout';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import styles from './Settings.module.scss';
+import { toastSuccess } from '../../lib';
 import { FiSave, FiCreditCard } from 'react-icons/fi';
 
 const Settings: React.FC = () => {
@@ -20,7 +21,7 @@ const Settings: React.FC = () => {
         // Simulate API
         await new Promise(resolve => setTimeout(resolve, 1500));
         setIsLoading(false);
-        alert('Payment settings saved successfully!');
+        toastSuccess('Payment settings saved successfully!');
     };
 
     return (

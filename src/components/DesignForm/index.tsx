@@ -4,7 +4,7 @@ import Button from '../Button';
 import FileUpload from '../FileUpload';
 import styles from './DesignForm.module.scss';
 import { useRouter } from 'next/router';
-import { toast } from 'react-hot-toast';
+import { toastError } from '../../lib';
 import { FileRejection } from 'react-dropzone';
 
 // Constants
@@ -59,7 +59,7 @@ const DesignForm: React.FC<DesignFormProps> = ({ initialValues, mode, onSubmit, 
     const handleFormSubmit = async (status: 'DRAFT' | 'PUBLISHED') => {
         if (status === 'PUBLISHED' || status === 'DRAFT' && !validate()) {
             if (Object.keys(errors).length > 0) {
-                toast.error("Please fix the errors before submitting");
+                toastError("Please fix the errors before submitting");
             }
             return;
         }
@@ -88,7 +88,7 @@ const DesignForm: React.FC<DesignFormProps> = ({ initialValues, mode, onSubmit, 
 
     const handleEmbroideryDrop = (files: File[], fileRejections: FileRejection[]) => {
         if (fileRejections.length > 0) {
-            toast.error("Invalid file type! Only .dst, .pes, .emb are allowed.");
+            toastError("Invalid file type! Only .dst, .pes, .emb are allowed.");
         }
         setDesignFiles(prev => [...prev, ...files]);
     };

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { toast } from 'react-hot-toast';
+import { toastSuccess, toastError } from '../lib';
 
 // Mock User Type
 interface User {
@@ -46,17 +46,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         if (foundUser) {
             if (foundUser.password && foundUser.password !== password) {
-                toast.error('Incorrect password.');
+                toastError('Incorrect password.');
                 setIsLoading(false);
                 return;
             }
 
             setUser(foundUser);
             localStorage.setItem('designer_user', JSON.stringify(foundUser));
-            toast.success('Logged in successfully!');
+            toastSuccess('Logged in successfully!');
             router.push('/');
         } else {
-            toast.error('User not found. Please register first.');
+            toastError('User not found. Please register first.');
         }
         setIsLoading(false);
     };
@@ -71,7 +71,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         // Check if already registered
         if (registeredUsers.some((u: User) => u.email === email)) {
-            toast.error('Email already registered. Please login.');
+            toastError('Email already registered. Please login.');
             setIsLoading(false);
             return;
         }
@@ -91,7 +91,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(newUser);
         localStorage.setItem('designer_user', JSON.stringify(newUser));
 
-        toast.success('Registration successful! Welcome.');
+        toastSuccess('Registration successful! Welcome.');
         router.push('/');
         setIsLoading(false);
     };
@@ -99,7 +99,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const logout = () => {
         setUser(null);
         localStorage.removeItem('designer_user');
-        toast.success('Logged out successfully.');
+        toastSuccess('Logged out successfully.');
         router.push('/login');
     };
 
