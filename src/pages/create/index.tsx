@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import DashboardLayout from '../../../components/DashboardLayout';
-import DesignForm from '../../../components/DesignForm';
+import DashboardLayout from '../../components/DashboardLayout';
+import DesignForm from '../../components/DesignForm';
 import { useRouter } from 'next/router';
 
 const CreateDesign: React.FC = () => {

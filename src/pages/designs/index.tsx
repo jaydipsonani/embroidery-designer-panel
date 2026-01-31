@@ -44,7 +44,7 @@ const Designs: React.FC = () => {
                 <div className={styles.search}>
                     {/* Search Input Placeholer */}
                 </div>
-                <Button onClick={() => router.push('/designs/create')}>
+                <Button onClick={() => router.push('/create')}>
                     <FiPlus /> New Design
                 </Button>
             </div>

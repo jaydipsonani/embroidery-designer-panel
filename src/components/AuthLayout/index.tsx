@@ -20,7 +20,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitle }) =>
                     {children}
                 </div>
                 <div className={styles.footer}>
-                    <p className={styles.copyright}>© 2025 Designer Panel</p>
+                    <p className={styles.copyright}>© {new Date().getFullYear()} Designer Panel</p>
                 </div>
             </div>
         </div>

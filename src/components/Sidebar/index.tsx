@@ -19,7 +19,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     const navItems = [
         { label: 'Dashboard', path: '/', icon: <FiGrid /> },
         { label: 'My Designs', path: '/designs', icon: <FiLayers /> },
-        { label: 'Upload Design', path: '/designs/create', icon: <FiUploadCloud /> },
+        { label: 'Upload Design', path: '/create', icon: <FiUploadCloud /> },
         { label: 'Analytics', path: '/analytics', icon: <FiBarChart2 /> },
         { label: 'Wallet', path: '/wallet', icon: <FiDollarSign /> }
     ];
@@ -60,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                     <p className={styles.sectionTitle} style={{ marginTop: '2rem' }}>ACCOUNT</p>
                     <ul className={styles.navList}>
                         <li>
-                            <Link href="/settings" className={styles.navItem} onClick={onClose}>
+                            <Link href="/settings" className={`${styles.navItem} ${isActive('/settings') ? styles.active : ''}`} onClick={onClose}>
                                 <span className={styles.icon}><FiSettings /></span>
                                 Settings
                             </Link>

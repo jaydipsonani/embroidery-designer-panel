@@ -18,7 +18,7 @@ const DashboardHome: React.FC = () => {
           <p>Here's what's happening with your embroidery designs today.</p>
         </div>
         <div className={styles.actions}>
-          <Button variant="primary" onClick={() => router.push('/designs/create')}>
+          <Button variant="primary" onClick={() => router.push('/create')}>
             <FiUploadCloud /> Upload Design
           </Button>
         </div>
