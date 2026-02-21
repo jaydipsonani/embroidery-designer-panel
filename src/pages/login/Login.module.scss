@@ -15,6 +15,27 @@
     }
 }
 
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: $spacing-6 0;
+    color: $text-light;
+    font-size: $font-size-xs;
+    font-weight: 500;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid $border-color;
+    }
+
+    span {
+        padding: 0 $spacing-3;
+    }
+}
+
 .registerLink {
     margin-top: $spacing-6;
     text-align: center;

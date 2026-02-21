@@ -56,8 +56,8 @@ const DesignForm: React.FC<DesignFormProps> = ({ initialValues, mode, onSubmit, 
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleFormSubmit = async (status: 'DRAFT' | 'PUBLISHED') => {
-        if (status === 'PUBLISHED' || status === 'DRAFT' && !validate()) {
+    const handleFormSubmit = async (status: 'DRAFT' | 'PENDING') => {
+        if (status === 'PENDING' || status === 'DRAFT' && !validate()) {
             if (Object.keys(errors).length > 0) {
                 toastError("Please fix the errors before submitting");
             }
@@ -226,8 +226,8 @@ const DesignForm: React.FC<DesignFormProps> = ({ initialValues, mode, onSubmit, 
                     </Button>
                     {/* Buttons could be passed or rendered here. For simplicity rendering here and exposing handlers */}
                     <Button variant="secondary" onClick={() => handleFormSubmit('DRAFT')}>Save as Draft</Button>
-                    <Button variant="primary" onClick={() => handleFormSubmit('PUBLISHED')} isLoading={isLoading}>
-                        {mode === 'create' ? 'Publish Design' : 'Save Changes'}
+                    <Button variant="primary" onClick={() => handleFormSubmit('PENDING')} isLoading={isLoading}>
+                        {mode === 'create' ? 'Submit for Review' : 'Update & Resubmit'}
                     </Button>
                 </div>
             </div>

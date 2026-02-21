@@ -8,11 +8,11 @@ import { FiEdit2, FiTrash2, FiPlus, FiEye } from 'react-icons/fi';
 import styles from './Designs.module.scss';
 import Link from 'next/link';
 
-// Mock Data
 const MOCK_DESIGNS = [
     { id: 1, name: 'Vintage Floral', price: 1200, status: 'PUBLISHED', date: '2025-01-20', sales: 12, category: 'Floral', imageUrl: 'https://placehold.co/100x100/4f46e5/ffffff?text=Floral' },
-    { id: 2, name: 'Lion Mascot', price: 2500, status: 'DRAFT', date: '2025-01-22', sales: 0, category: 'Animals', imageUrl: 'https://placehold.co/100x100/10b981/ffffff?text=Lion' },
-    { id: 3, name: 'Abstract Geometric', price: 850, status: 'PUBLISHED', date: '2025-01-18', sales: 5, category: 'Abstract', imageUrl: 'https://placehold.co/100x100/f59e0b/ffffff?text=Geo' },
+    { id: 2, name: 'Lion Mascot', price: 2500, status: 'PENDING', date: '2025-01-22', sales: 0, category: 'Animals', imageUrl: 'https://placehold.co/100x100/10b981/ffffff?text=Lion' },
+    { id: 3, name: 'Abstract Geometric', price: 850, status: 'DRAFT', date: '2025-01-18', sales: 0, category: 'Abstract', imageUrl: 'https://placehold.co/100x100/f59e0b/ffffff?text=Geo' },
+    { id: 4, name: 'Modern Pattern', price: 1500, status: 'REJECTED', date: '2025-01-25', sales: 0, category: 'Abstract', imageUrl: 'https://placehold.co/100x100/ef4444/ffffff?text=Rej' },
 ];
 
 const Designs: React.FC = () => {
@@ -76,7 +76,11 @@ const Designs: React.FC = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    <Badge variant={design.status === 'PUBLISHED' ? 'success' : 'neutral'}>
+                                    <Badge variant={
+                                        design.status === 'PUBLISHED' ? 'success' :
+                                            design.status === 'PENDING' ? 'info' :
+                                                design.status === 'REJECTED' ? 'danger' : 'neutral'
+                                    }>
                                         {design.status}
                                     </Badge>
                                 </td>
@@ -136,7 +140,11 @@ const Designs: React.FC = () => {
                         <div className={styles.viewDetails}>
                             <h4>{selectedDesign.name}</h4>
                             <p className={styles.metaRow}>
-                                <Badge variant={selectedDesign.status === 'PUBLISHED' ? 'success' : 'neutral'}>
+                                <Badge variant={
+                                    selectedDesign.status === 'PUBLISHED' ? 'success' :
+                                        selectedDesign.status === 'PENDING' ? 'info' :
+                                            selectedDesign.status === 'REJECTED' ? 'danger' : 'neutral'
+                                }>
                                     {selectedDesign.status}
                                 </Badge>
                                 <span>{selectedDesign.category}</span>

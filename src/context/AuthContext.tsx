@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { toastSuccess, toastError } from '../lib';
+import { auth, googleProvider } from '../lib/firebase';
+import { signInWithPopup, onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 
 // Mock User Type
 interface User {
@@ -15,6 +17,7 @@ interface AuthContextType {
     user: User | null;
     login: (email: string, password: string) => Promise<void>;
     register: (name: string, email: string, password: string) => Promise<void>;
+    loginWithGoogle: () => Promise<void>;
     logout: () => void;
     isLoading: boolean;
 }
@@ -27,12 +30,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const router = useRouter();
 
     useEffect(() => {
-        // Check localStorage for mock session
-        const storedUser = localStorage.getItem('designer_user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-        setIsLoading(false);
+        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+            if (firebaseUser) {
+                const userData: User = {
+                    id: firebaseUser.uid,
+                    name: firebaseUser.displayName || 'User',
+                    email: firebaseUser.email || '',
+                    role: 'designer'
+                };
+                setUser(userData);
+                localStorage.setItem('designer_user', JSON.stringify(userData));
+            } else {
+                const storedUser = localStorage.getItem('designer_user');
+                if (storedUser) {
+                    setUser(JSON.parse(storedUser));
+                }
+            }
+            setIsLoading(false);
+        });
+
+        return () => unsubscribe();
     }, []);
 
     const login = async (email: string, password: string) => {
@@ -96,15 +113,45 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsLoading(false);
     };
 
-    const logout = () => {
-        setUser(null);
-        localStorage.removeItem('designer_user');
-        toastSuccess('Logged out successfully.');
-        router.push('/login');
+    const loginWithGoogle = async () => {
+        setIsLoading(true);
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const firebaseUser = result.user;
+
+            const userData: User = {
+                id: firebaseUser.uid,
+                name: firebaseUser.displayName || 'User',
+                email: firebaseUser.email || '',
+                role: 'designer'
+            };
+
+            setUser(userData);
+            localStorage.setItem('designer_user', JSON.stringify(userData));
+            toastSuccess('Logged in with Google successfully!');
+            router.push('/');
+        } catch (error: any) {
+            console.error(error);
+            toastError(error.message || 'Google Login failed.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const logout = async () => {
+        try {
+            await auth.signOut();
+            setUser(null);
+            localStorage.removeItem('designer_user');
+            toastSuccess('Logged out successfully.');
+            router.push('/login');
+        } catch (error: any) {
+            toastError('Error during logout.');
+        }
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
+        <AuthContext.Provider value={{ user, login, register, loginWithGoogle, logout, isLoading }}>
             {children}
         </AuthContext.Provider>
     );

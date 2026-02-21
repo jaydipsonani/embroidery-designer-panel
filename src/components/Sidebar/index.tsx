@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from './Sidebar.module.scss';
 import { FiGrid, FiUploadCloud, FiLayers, FiLogOut, FiSettings, FiDollarSign, FiX, FiBarChart2 } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
+import Modal from '../Modal';
+import { Button } from 'react-bootstrap';
 
 interface SidebarProps {
     isOpen: boolean;
@@ -13,6 +15,15 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     const router = useRouter();
     const { logout } = useAuth();
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
+    const openLogoutModal = () => setIsLogoutModalOpen(true);
+    const closeLogoutModal = () => setIsLogoutModalOpen(false);
+
+    const confirmLogout = () => {
+        logout();
+        closeLogoutModal();
+    };
 
     const isActive = (path: string) => router.pathname === path || router.pathname.startsWith(path + '/');
 
@@ -69,12 +80,31 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 </nav>
 
                 <div className={styles.footer}>
-                    <button onClick={logout} className={styles.logoutButton}>
+                    <button onClick={openLogoutModal} className={styles.logoutButton}>
                         <FiLogOut />
                         <span>Sign Out</span>
                     </button>
                 </div>
             </aside>
+
+            {/* Logout Confirmation Modal */}
+            <Modal
+                isOpen={isLogoutModalOpen}
+                onClose={closeLogoutModal}
+                title="Confirm Logout"
+                footer={
+                    <>
+                        <Button variant="secondary" onClick={closeLogoutModal} style={{ marginRight: '10px' }}>
+                            Cancel
+                        </Button>
+                        <Button variant="danger" onClick={confirmLogout}>
+                            Logout
+                        </Button>
+                    </>
+                }
+            >
+                Are you sure you want to log out?
+            </Modal>
         </>
     );
 };

@@ -57,25 +57,74 @@
     color: $text-light;
 }
 
-.emptyState {
-    background-color: $background-white;
-    padding: $spacing-12;
-    border-radius: $radius-lg;
-    text-align: center;
-    border: 2px dashed $border-color;
+.infoText {
+    color: $primary-color !important;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: $spacing-8 0 $spacing-4 0;
 
     h3 {
-        margin-top: $spacing-4;
+        font-size: $font-size-lg;
         font-weight: 600;
-    }
-
-    p {
-        color: $text-secondary;
-        margin-bottom: $spacing-6;
+        color: $text-primary;
     }
 }
 
-.emptyIcon {
-    font-size: 3rem;
-    color: $text-light;
+.recentActivity {
+    background-color: $background-white;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
+    border: 1px solid $border-color;
+    overflow: hidden;
+    margin-bottom: $spacing-8;
+}
+
+.activityList {
+    display: flex;
+    flex-direction: column;
+}
+
+.activityItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-4 $spacing-6;
+    border-bottom: 1px solid $border-color;
+    transition: background-color 0.2s;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background-color: $background-light;
+    }
+}
+
+.activityInfo {
+    display: flex;
+    flex-direction: column;
+
+    strong {
+        font-size: $font-size-base;
+        color: $text-primary;
+    }
+
+    span {
+        font-size: $font-size-sm;
+        color: $text-light;
+    }
+}
+
+.statusBadge {
+    padding: $spacing-1 $spacing-3;
+    background-color: $background-light;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    color: $text-secondary;
 }
