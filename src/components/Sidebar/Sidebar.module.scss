@@ -36,13 +36,47 @@
     left: 0;
     top: 0;
     z-index: 50;
-    transition: transform 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+    &.collapsed {
+        width: 80px;
+
+        .logo {
+            padding: 0;
+            justify-content: center;
+        }
+
+        .logoIcon {
+            margin-right: 0;
+        }
+
+        .logoText, 
+        .sectionTitle,
+        .navItem span:not(.icon),
+        .logoutButton span {
+            display: none;
+        }
+
+        .navItem, .logoutButton {
+            justify-content: center;
+            padding: $spacing-2 0;
+        }
+
+        .icon, svg {
+            margin-right: 0;
+        }
+    }
 
     @media (max-width: 1023px) {
         transform: translateX(-100%); // Hide by default on mobile
+        width: 260px !important; // Reset width on mobile
 
         &.open {
             transform: translateX(0); // Slide in
+        }
+        
+        .toggleBtn {
+            display: none; // Hide toggle btn on mobile
         }
     }
 }
@@ -164,5 +198,35 @@
     svg {
         margin-right: $spacing-3;
         font-size: 1.25em;
+    }
+}
+
+.toggleBtn {
+    position: absolute;
+    right: -12.5px;
+    top: 80px;
+    width: 25px;
+    height: 25px;
+    background-color: $background-white;
+    border: 1px solid $border-color;
+    border-radius: $radius-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: $shadow-sm;
+    z-index: 60;
+    color: $text-secondary;
+    @include transition-base;
+
+    &:hover {
+        background-color: $background-light;
+        color: $primary-color;
+        box-shadow: $shadow-md;
+    }
+
+    svg {
+        font-size: 0.875rem;
+        margin-right: 0 !important;
     }
 }

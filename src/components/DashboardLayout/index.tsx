@@ -15,6 +15,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, title }) =>
     const { user, isLoading } = useAuth();
     const router = useRouter();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
     useEffect(() => {
         if (!isLoading && !user) {
@@ -34,11 +35,20 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, title }) =>
         return null;
     }
 
+    const toggleSidebarCollapse = () => {
+        setIsSidebarCollapsed(!isSidebarCollapsed);
+    };
+
     return (
         <div className={styles.container}>
-            <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+            <Sidebar
+                isOpen={isSidebarOpen}
+                onClose={() => setIsSidebarOpen(false)}
+                isCollapsed={isSidebarCollapsed}
+                onToggleCollapse={toggleSidebarCollapse}
+            />
 
-            <main className={styles.main}>
+            <main className={`${styles.main} ${isSidebarCollapsed ? styles.collapsedSidebar : ''}`}>
                 <header className={styles.header}>
                     <button
                         className={styles.menuButton}

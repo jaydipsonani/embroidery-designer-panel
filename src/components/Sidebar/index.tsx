@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from './Sidebar.module.scss';
-import { FiGrid, FiUploadCloud, FiLayers, FiLogOut, FiSettings, FiDollarSign, FiX, FiBarChart2 } from 'react-icons/fi';
+import { FiGrid, FiUploadCloud, FiLayers, FiLogOut, FiSettings, FiDollarSign, FiX, FiBarChart2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 import Modal from '../Modal';
 import { Button } from 'react-bootstrap';
@@ -10,9 +10,11 @@ import { Button } from 'react-bootstrap';
 interface SidebarProps {
     isOpen: boolean;
     onClose: () => void;
+    isCollapsed?: boolean;
+    onToggleCollapse?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isCollapsed, onToggleCollapse }) => {
     const router = useRouter();
     const { logout } = useAuth();
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
@@ -42,17 +44,21 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 onClick={onClose}
             />
 
-            <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+            <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''} ${isCollapsed ? styles.collapsed : ''}`}>
                 <div className={styles.logo} onClick={() => router.push('/')}>
                     <div className={styles.logoIcon}>E</div>
-                    <span className={styles.logoText}>Embroidery</span>
+                    {!isCollapsed && <span className={styles.logoText}>Embroidery</span>}
                     <button className={styles.closeBtn} onClick={onClose}>
                         <FiX />
                     </button>
                 </div>
 
+                <button className={styles.toggleBtn} onClick={onToggleCollapse}>
+                    {isCollapsed ? <FiChevronRight /> : <FiChevronLeft />}
+                </button>
+
                 <nav className={styles.nav}>
-                    <p className={styles.sectionTitle}>MENU</p>
+                    {!isCollapsed && <p className={styles.sectionTitle}>MENU</p>}
                     <ul className={styles.navList}>
                         {navItems.map((item) => (
                             <li key={item.path}>
@@ -60,29 +66,35 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                                     href={item.path}
                                     className={`${styles.navItem} ${isActive(item.path) ? styles.active : ''}`}
                                     onClick={onClose} // Close sidebar on nav click (mobile)
+                                    title={isCollapsed ? item.label : ''}
                                 >
                                     <span className={styles.icon}>{item.icon}</span>
-                                    {item.label}
+                                    {!isCollapsed && item.label}
                                 </Link>
                             </li>
                         ))}
                     </ul>
 
-                    <p className={styles.sectionTitle} style={{ marginTop: '2rem' }}>ACCOUNT</p>
+                    {!isCollapsed && <p className={styles.sectionTitle} style={{ marginTop: '2rem' }}>ACCOUNT</p>}
                     <ul className={styles.navList}>
                         <li>
-                            <Link href="/settings" className={`${styles.navItem} ${isActive('/settings') ? styles.active : ''}`} onClick={onClose}>
+                            <Link 
+                                href="/settings" 
+                                className={`${styles.navItem} ${isActive('/settings') ? styles.active : ''}`} 
+                                onClick={onClose}
+                                title={isCollapsed ? 'Settings' : ''}
+                            >
                                 <span className={styles.icon}><FiSettings /></span>
-                                Settings
+                                {!isCollapsed && 'Settings'}
                             </Link>
                         </li>
                     </ul>
                 </nav>
 
                 <div className={styles.footer}>
-                    <button onClick={openLogoutModal} className={styles.logoutButton}>
+                    <button onClick={openLogoutModal} className={styles.logoutButton} title={isCollapsed ? 'Sign Out' : ''}>
                         <FiLogOut />
-                        <span>Sign Out</span>
+                        {!isCollapsed && <span>Sign Out</span>}
                     </button>
                 </div>
             </aside>

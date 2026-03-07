@@ -16,6 +16,10 @@
     // Desktop: Margin for sidebar
     @media (min-width: 1024px) {
         margin-left: 260px;
+
+        &.collapsedSidebar {
+            margin-left: 80px;
+        }
     }
 }
 
@@ -32,7 +36,7 @@
     z-index: 30; // Above content, below sidebar overlay
 
     @media (min-width: 1024px) {
-        padding: 0 $spacing-8;
+        display: none;
     }
 }
 
