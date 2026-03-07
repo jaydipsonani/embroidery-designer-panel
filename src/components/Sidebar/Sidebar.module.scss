@@ -28,6 +28,7 @@
 .sidebar {
     width: 260px;
     height: 100vh;
+    height: 100dvh;
     background-color: $background-white;
     border-right: 1px solid $border-color;
     display: flex;
@@ -37,6 +38,7 @@
     top: 0;
     z-index: 50;
     transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+    overflow: hidden; // Critical for mobile to prevent full-panel scroll
 
     &.collapsed {
         width: 80px;
