@@ -38,7 +38,6 @@
     top: 0;
     z-index: 50;
     transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
-    overflow: hidden; // Critical for mobile to prevent full-panel scroll
 
     &.collapsed {
         width: 80px;
@@ -52,19 +51,21 @@
             margin-right: 0;
         }
 
-        .logoText, 
+        .logoText,
         .sectionTitle,
         .navItem span:not(.icon),
         .logoutButton span {
             display: none;
         }
 
-        .navItem, .logoutButton {
+        .navItem,
+        .logoutButton {
             justify-content: center;
             padding: $spacing-2 0;
         }
 
-        .icon, svg {
+        .icon,
+        svg {
             margin-right: 0;
         }
     }
@@ -76,7 +77,7 @@
         &.open {
             transform: translateX(0); // Slide in
         }
-        
+
         .toggleBtn {
             display: none; // Hide toggle btn on mobile
         }
@@ -207,8 +208,8 @@
     position: absolute;
     right: -12.5px;
     top: 80px;
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
     background-color: $background-white;
     border: 1px solid $border-color;
     border-radius: $radius-sm;
@@ -228,7 +229,9 @@
     }
 
     svg {
-        font-size: 0.875rem;
+        font-size: 1.2rem;
+        stroke-width: 2.5px;
         margin-right: 0 !important;
+        display: block;
     }
 }
