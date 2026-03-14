@@ -62,8 +62,8 @@ const Register: React.FC = () => {
                     Create Account
                 </Button>
 
-                <div className={styles.registerLink}>
-                    Already have an account? <Link href="/login">Sign in</Link>
+                <div className={styles.loginCardFooter}>
+                    Already have an account? <Link href="/login" className={styles.signupLink}>Sign in</Link>
                 </div>
             </form>
         </AuthLayout>

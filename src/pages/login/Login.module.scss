@@ -5,11 +5,12 @@
     margin-bottom: $spacing-6;
 
     a {
-        font-size: $font-size-xs;
+        font-size: $font-size-sm;
         color: $primary-color;
-        font-weight: 500;
+        font-weight: 600;
 
         &:hover {
+            color: $primary-hover;
             text-decoration: underline;
         }
     }
@@ -36,18 +37,20 @@
     }
 }
 
-.registerLink {
-    margin-top: $spacing-6;
+.loginCardFooter {
+    margin-top: $spacing-8;
     text-align: center;
-    font-size: $font-size-sm;
+    font-size: $font-size-base;
     color: $text-secondary;
+}
 
-    a {
-        color: $primary-color;
-        font-weight: 600;
+.signupLink {
+    color: $primary-color;
+    font-weight: 700;
+    margin-left: $spacing-2;
 
-        &:hover {
-            text-decoration: underline;
-        }
+    &:hover {
+        color: $primary-hover;
+        text-decoration: underline;
     }
 }

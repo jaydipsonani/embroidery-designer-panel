@@ -8,7 +8,7 @@ import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import styles from './Login.module.scss'; // We'll create a small local style for page specific links
 
 const Login: React.FC = () => {
-    const { login, loginWithGoogle } = useAuth();
+    const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -55,22 +55,8 @@ const Login: React.FC = () => {
                     Sign In
                 </Button>
 
-                <div className={styles.divider}>
-                    <span>OR</span>
-                </div>
-
-                <Button
-                    type="button"
-                    variant="outline"
-                    fullWidth
-                    onClick={loginWithGoogle}
-                    isLoading={isLoading}
-                >
-                    Login with Google
-                </Button>
-
-                <div className={styles.registerLink}>
-                    Don't have an account? <Link href="/register">Sign up</Link>
+                <div className={styles.loginCardFooter}>
+                    Don't have an account? <Link href="/register" className={styles.signupLink}>Sign up</Link>
                 </div>
             </form>
         </AuthLayout>

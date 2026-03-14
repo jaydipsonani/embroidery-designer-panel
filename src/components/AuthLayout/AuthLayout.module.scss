@@ -3,51 +3,142 @@
 .container {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $background-light;
-    padding: $spacing-4;
-    background: linear-gradient(135deg, $background-light 0%, #e0e7ff 100%);
+    background-color: $background-white;
+
+    @media (max-width: 700px) {
+        flex-direction: column-reverse;
+        min-height: auto;
+    }
 }
 
-.card {
+// Sidebar (Left half)
+.sidebar {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: $spacing-12;
+    overflow: hidden;
+
+    @media (max-width: 700px) {
+        flex: none;
+        height: 300px;
+        padding: $spacing-8;
+    }
+}
+
+.imageWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.sidebarImage {
+    object-fit: cover;
+}
+
+.imageOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba($primary-color, 0.2), rgba(#000, 0.7));
+    z-index: 2;
+}
+
+.sidebarContent {
+    position: relative;
+    z-index: 3;
+    color: white;
     max-width: 450px;
-    background-color: $background-white;
-    padding: $spacing-8;
-    border-radius: $radius-lg;
+}
+
+.logoBadge {
+    width: 40px;
+    height: 40px;
+    background-color: $primary-color;
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-xl;
+    font-weight: 800;
+    margin-bottom: $spacing-4;
     box-shadow: $shadow-lg;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebarTitle {
+    font-size: $font-size-2xl;
+    font-weight: 800;
+    margin-bottom: $spacing-2;
+    line-height: 1.2;
+}
+
+.sidebarText {
+    font-size: $font-size-base;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+// Form Section (Right half)
+.formSection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-8;
+    background-color: $background-white;
+
+    @media (max-width: 700px) {
+        flex: none;
+        padding: 10px 40px;
+        background-color: $background-white;
+    }
+}
+
+.formContainer {
+    width: 100%;
+    max-width: 480px;
     @include transition-base;
 }
 
 .header {
-    text-align: center;
     margin-bottom: $spacing-8;
+
+    @media (max-width: 992px) {
+        text-align: center;
+    }
 }
 
 .title {
-    font-size: $font-size-2xl;
-    font-weight: 700;
+    font-size: $font-size-3xl;
+    font-weight: 800;
     color: $text-primary;
     margin-bottom: $spacing-2;
 }
 
 .subtitle {
     color: $text-secondary;
-    font-size: $font-size-sm;
+    font-size: $font-size-base;
 }
 
 .content {
-    margin-bottom: $spacing-6;
+    margin-bottom: $spacing-8;
 }
 
 .footer {
-    text-align: center;
+    padding-top: $spacing-6;
     border-top: 1px solid $border-color;
-    padding-top: $spacing-4;
 }
 
 .copyright {
     font-size: $font-size-xs;
     color: $text-light;
+    line-height: 1.5;
 }

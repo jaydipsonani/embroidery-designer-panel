@@ -17,7 +17,6 @@ interface AuthContextType {
     user: User | null;
     login: (email: string, password: string) => Promise<void>;
     register: (name: string, email: string, password: string) => Promise<void>;
-    loginWithGoogle: () => Promise<void>;
     logout: () => void;
     isLoading: boolean;
 }
@@ -113,30 +112,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsLoading(false);
     };
 
-    const loginWithGoogle = async () => {
-        setIsLoading(true);
-        try {
-            const result = await signInWithPopup(auth, googleProvider);
-            const firebaseUser = result.user;
 
-            const userData: User = {
-                id: firebaseUser.uid,
-                name: firebaseUser.displayName || 'User',
-                email: firebaseUser.email || '',
-                role: 'designer'
-            };
-
-            setUser(userData);
-            localStorage.setItem('designer_user', JSON.stringify(userData));
-            toastSuccess('Logged in with Google successfully!');
-            router.push('/');
-        } catch (error: any) {
-            console.error(error);
-            toastError(error.message || 'Google Login failed.');
-        } finally {
-            setIsLoading(false);
-        }
-    };
 
     const logout = async () => {
         try {
@@ -151,7 +127,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, register, loginWithGoogle, logout, isLoading }}>
+        <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
             {children}
         </AuthContext.Provider>
     );
