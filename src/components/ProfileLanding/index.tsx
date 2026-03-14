@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import styles from './ProfileLanding.module.scss';
 import { FiCheckCircle, FiUploadCloud, FiTrendingUp, FiGlobe, FiShield, FiHeart } from 'react-icons/fi';
 
+import Image from 'next/image';
+
 const ProfileLanding: React.FC = () => {
   const router = useRouter();
 
@@ -60,11 +62,20 @@ const ProfileLanding: React.FC = () => {
           </div>
         </div>
         <div className={styles.heroVisual}>
-          <div className={styles.imagePlaceholder}>
-            <FiUploadCloud className={styles.visualIcon} />
-            <div className={styles.visualText}>
-              <p className={styles.visualTitle}>Upload your first design</p>
-              <p className={styles.visualSub}>Get started in minutes</p>
+          <div className={styles.imageContainer}>
+            <Image
+              src="/images/hero-profile.png"
+              alt="Premium Embroidery"
+              fill
+              priority
+              className={styles.heroImage}
+            />
+            <div className={styles.imageOverlay}>
+              <FiUploadCloud className={styles.visualIcon} />
+              <div className={styles.overlayText}>
+                <p className={styles.visualTitle}>Start Uploading</p>
+                <p className={styles.visualSub}>Get approved fast</p>
+              </div>
             </div>
           </div>
           <div className={styles.decorativeCircle}></div>
