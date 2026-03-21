@@ -1,0 +1,197 @@
+@import '../../assets/styles/main.scss';
+
+.optScreenCenter {
+  justify-content: center;
+
+  .formBg {
+    .mainContactTitle {
+      margin-bottom: 5px;
+
+      h1 {
+        font-size: 30px;
+        @include outfit400;
+        line-height: 37.8px;
+        text-align: center;
+
+        @include xl {
+          font-size: 28px;
+        }
+
+        @include md {
+          font-size: 26px;
+          line-height: 33.8px;
+        }
+
+        @include sm {
+          font-size: 22px;
+          line-height: 29.8px;
+        }
+      }
+    }
+
+    .otpCenter {
+      justify-content: center;
+
+      .otpText {
+        text-align: center;
+
+        h4 {
+          font-size: 16px;
+          @include outfit400;
+          color: #949494;
+          line-height: 20.16px;
+          text-align: center;
+
+          @include xs {
+            font-size: 15px;
+          }
+        }
+      }
+
+      .inputotpText {
+        margin-top: 30px;
+
+        @include lg {
+          margin-top: 25px;
+        }
+
+        @include xs {
+          margin: 20px 0;
+        }
+      }
+
+      .resendOtp {
+        .resendOtpMessage {
+          font-size: 16px;
+          @include outfit400;
+          line-height: 20.16px;
+          text-align: center;
+          color: #949494;
+          margin: 30px 0;
+
+          @include lg {
+            margin: 25px 0;
+          }
+
+          @include xs {
+            margin: 20px 0;
+          }
+
+          @include xxs {
+            font-size: 15px;
+          }
+
+          .resendOtpNumber {
+            color: red;
+          }
+
+          .resendOtpText {
+            color: rgba(74, 74, 74, 1);
+            text-decoration: underline;
+          }
+
+          span {
+            cursor: pointer;
+            color: #fc4a1b !important;
+          }
+        }
+      }
+    }
+
+    .otpBtnSection {
+      text-align: center;
+
+      button {
+        border-radius: 5px;
+        background: $primary-color;
+        padding: 15px 35px;
+        color: #fff;
+        text-align: center;
+        font-size: 18px;
+        @include outfit500;
+        letter-spacing: 0.162px;
+        line-height: 22.68px;
+        width: 95%;
+        border: unset;
+        height: 45px;
+
+        &:hover {
+          background: $primary-hover;
+        }
+
+        @include lg {
+          padding: 14px;
+          width: 80%;
+          @include outfit400;
+        }
+
+        @include xs {
+          padding: 12px;
+          font-size: 15px;
+        }
+
+        @include xxxs {
+          padding: 10px;
+        }
+      }
+    }
+
+    .verifyOtpGridAlignments {
+      gap: 15px;
+      display: flex;
+      justify-content: center;
+
+      @include lg {
+        gap: 6px;
+      }
+
+      @include xxxs {
+        gap: 8px;
+      }
+
+      input {
+        width: 64px;
+        height: 63px;
+        border-radius: 5px;
+        text-align: center;
+        transition: 0.2s ease-in-out;
+        border: 1px solid #c5c5c5;
+        background: white;
+        font-size: 20px;
+
+        @include lg {
+          height: 55px;
+          width: 55px;
+        }
+
+        @include sm {
+          height: 40px;
+          width: 40px;
+        }
+
+        &:focus {
+          border: 1px solid $primary-color;
+          background: getColorHex('white');
+          outline: none;
+        }
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        &[type='number'] {
+          -moz-appearance: textfield;
+          appearance: textfield;
+        }
+
+        @supports (-webkit-touch-callout: none) {
+          @media screen and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
+            font-size: 16px !important;
+          }
+        }
+      }
+    }
+  }
+}

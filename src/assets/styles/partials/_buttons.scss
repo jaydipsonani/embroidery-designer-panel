@@ -1,0 +1,31 @@
+@import "mixins";
+@import "typography";
+@import "variables";
+
+.commonButton {
+    padding: 15px 30px;
+    font-size: 20px;
+    line-height: 20.16px;
+
+    cursor: pointer;
+    border: unset;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #ff7916, #fc4a1b);
+    color: #fff !important;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    @include outfit500;
+    
+    &:hover {
+        background: linear-gradient(90deg, #fc4a1b, #ff7916);
+    }
+  
+    &:disabled,
+    &.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+

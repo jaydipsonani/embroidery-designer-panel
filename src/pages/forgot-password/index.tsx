@@ -20,7 +20,6 @@ const ForgotPassword: React.FC = () => {
         await new Promise(resolve => setTimeout(resolve, 1500));
         setIsLoading(false);
         toastSuccess('otp sent to your email!');
-        router.push('/otp-verification');
     };
 
     return (

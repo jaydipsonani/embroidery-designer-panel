@@ -15,9 +15,8 @@ interface User {
 
 interface AuthContextType {
     user: User | null;
-    login: (email: string, password: string) => Promise<void>;
-    register: (name: string, email: string, password: string) => Promise<void>;
     logout: () => void;
+    setUser: any;
     isLoading: boolean;
 }
 
@@ -51,69 +50,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return () => unsubscribe();
     }, []);
 
-    const login = async (email: string, password: string) => {
-        setIsLoading(true);
-        // Simulate API
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        // Get registered users from local storage
-        const registeredUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
-        const foundUser = registeredUsers.find((u: User) => u.email === email);
-
-        if (foundUser) {
-            if (foundUser.password && foundUser.password !== password) {
-                toastError('Incorrect password.');
-                setIsLoading(false);
-                return;
-            }
-
-            setUser(foundUser);
-            localStorage.setItem('designer_user', JSON.stringify(foundUser));
-            toastSuccess('Logged in successfully!');
-            router.push('/');
-        } else {
-            toastError('User not found. Please register first.');
-        }
-        setIsLoading(false);
-    };
-
-    const register = async (name: string, email: string, password: string) => {
-        setIsLoading(true);
-        // Simulate API
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        // Get registered users
-        const registeredUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
-
-        // Check if already registered
-        if (registeredUsers.some((u: User) => u.email === email)) {
-            toastError('Email already registered. Please login.');
-            setIsLoading(false);
-            return;
-        }
-
-        const newUser: User = {
-            id: Date.now().toString(),
-            name,
-            email,
-            role: 'designer',
-            password
-        };
-
-        // Save new user
-        localStorage.setItem('registered_users', JSON.stringify([...registeredUsers, newUser]));
-
-        // Auto login
-        setUser(newUser);
-        localStorage.setItem('designer_user', JSON.stringify(newUser));
-
-        toastSuccess('Registration successful! Welcome.');
-        router.push('/');
-        setIsLoading(false);
-    };
-
-
-
     const logout = async () => {
         try {
             await auth.signOut();
@@ -127,7 +63,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
+        <AuthContext.Provider value={{ user, logout, isLoading, setUser }}>
             {children}
         </AuthContext.Provider>
     );

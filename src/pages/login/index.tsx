@@ -5,19 +5,41 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Link from 'next/link';
 import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
-import styles from './Login.module.scss'; // We'll create a small local style for page specific links
+import styles from './Login.module.scss';
+import { toastError, toastSuccess } from '@/lib';
+import { useRouter } from 'next/router';
 
 const Login: React.FC = () => {
-    const { login } = useAuth();
     const [email, setEmail] = useState('');
+    const { setUser } = useAuth();
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        await login(email, password);
+        // Simulate API
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        // Get registered users from local storage
+        const registeredUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
+        const foundUser = registeredUsers.find((u: any) => u.email === email);
+
+        if (foundUser) {
+            if (foundUser.password && foundUser.password !== password) {
+                toastError('Incorrect password.');
+                setIsLoading(false);
+                return;
+            }
+            setUser(foundUser);
+            localStorage.setItem('designer_user', JSON.stringify(foundUser));
+            toastSuccess('Logged in successfully!');
+            router.push('/');
+        } else {
+            toastError('User not found. Please register first.');
+        }
         setIsLoading(false);
     };
 

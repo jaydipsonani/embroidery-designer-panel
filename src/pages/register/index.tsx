@@ -6,19 +6,51 @@ import Button from '../../components/Button';
 import Link from 'next/link';
 import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import styles from '../login/Login.module.scss'; // Reuse styles for links
+import { useRouter } from 'next/router';
+import { toastError, toastSuccess } from '@/lib';
 
 const Register: React.FC = () => {
-    const { register } = useAuth();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const { setUser } = useAuth();
+    const router = useRouter()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        await register(name, email, password);
+        // Simulate API
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        // Get registered users
+        const registeredUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
+
+        // Check if already registered
+        if (registeredUsers.some((u: any) => u.email === email)) {
+            toastError('Email already registered. Please login.');
+            setIsLoading(false);
+            return;
+        }
+
+        const newUser: any = {
+            id: Date.now().toString(),
+            name,
+            email,
+            role: 'designer',
+            password
+        };
+
+        // Save new user
+        localStorage.setItem('registered_users', JSON.stringify([...registeredUsers, newUser]));
+
+        // Auto login
+        setUser(newUser);
+        localStorage.setItem('designer_user', JSON.stringify(newUser));
+
+        toastSuccess('Registration successful! Welcome.');
+        router.push('/');
         setIsLoading(false);
     };
 

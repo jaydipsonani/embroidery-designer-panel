@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app';
 import { AuthProvider } from '../context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/globals.scss';
+import '../../src/assets/styles/globals.scss';
 import '../styles/nprogress.scss';
 import { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
