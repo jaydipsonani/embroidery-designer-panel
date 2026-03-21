@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useAuth } from '../../context/AuthContext';
-import AuthLayout from '../../components/AuthLayout';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import { useAuth } from '../../../context/AuthContext';
+import AuthLayout from '../../../components/AuthLayout';
+import Input from '../../../components/modules/Input';
+import Button from '../../../components/modules/Button';
 import Link from 'next/link';
 import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
-import styles from '../login/Login.module.scss'; // Reuse styles for links
+import styles from './register.module.scss'; // Reuse styles for links
 import { useRouter } from 'next/router';
 import { toastError, toastSuccess } from '@/lib';
 
@@ -95,7 +95,7 @@ const Register: React.FC = () => {
                 </Button>
 
                 <div className={styles.loginCardFooter}>
-                    Already have an account? <Link href="/login" className={styles.signupLink}>Sign in</Link>
+                    Already have an account? <Link href="/auth/login" className={styles.signupLink}>Sign in</Link>
                 </div>
             </form>
         </AuthLayout>

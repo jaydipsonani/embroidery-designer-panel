@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import DashboardLayout from '../../components/DashboardLayout';
-import Button from '../../components/Button';
-import Badge from '../../components/Badge';
-import Modal from '../../components/Modal';
-import Input from '../../components/Input';
+import Button from '../../components/modules/Button';
+import Badge from '../../components/modules/Badge';
+import Modal from '../../components/modules/Modal';
+import Input from '../../components/modules/Input';
 import styles from './Wallet.module.scss';
 import { toastSuccess } from '../../lib';
 import { FiDollarSign, FiArrowUpRight, FiArrowDownLeft, FiClock } from 'react-icons/fi';

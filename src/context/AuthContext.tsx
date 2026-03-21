@@ -56,7 +56,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             setUser(null);
             localStorage.removeItem('designer_user');
             toastSuccess('Logged out successfully.');
-            router.push('/login');
+            router.push('/auth/login');
         } catch (error: any) {
             toastError('Error during logout.');
         }

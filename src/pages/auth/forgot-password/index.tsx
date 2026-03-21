@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import AuthLayout from '../../components/AuthLayout';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import AuthLayout from '../../../components/AuthLayout';
+import Input from '../../../components/modules/Input';
+import Button from '../../../components/modules/Button';
 import Link from 'next/link';
 import { FiMail, FiChevronLeft } from 'react-icons/fi';
-import styles from '../login/Login.module.scss';
+import styles from './forgotPassword.module.scss';
 import { useRouter } from 'next/router';
-import { toastSuccess } from '../../lib';
+import { toastSuccess } from '../../../lib';
 
 const ForgotPassword: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -43,7 +43,7 @@ const ForgotPassword: React.FC = () => {
                 </Button>
 
                 <div className={styles.registerLink} style={{ marginTop: '2rem', justifyContent: 'center' }}>
-                    <Link href="/login" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Link href="/auth/login" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <FiChevronLeft /> Back to Login
                     </Link>
                 </div>

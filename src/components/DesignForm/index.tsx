@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Input from '../Input';
-import Button from '../Button';
+import Input from '../modules/Input';
+import Button from '../modules/Button';
 import FileUpload from '../FileUpload';
 import styles from './DesignForm.module.scss';
 import { useRouter } from 'next/router';

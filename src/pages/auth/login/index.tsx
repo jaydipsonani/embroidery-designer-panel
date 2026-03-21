@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useAuth } from '../../context/AuthContext';
-import AuthLayout from '../../components/AuthLayout';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import { useAuth } from '../../../context/AuthContext';
+import AuthLayout from '../../../components/AuthLayout';
+import Input from '../../../components/modules/Input';
+import Button from '../../../components/modules/Button';
 import Link from 'next/link';
 import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import styles from './Login.module.scss';
@@ -70,7 +70,7 @@ const Login: React.FC = () => {
                     required
                 />
                 <div className={styles.forgotPassword}>
-                    <Link href="/forgot-password">Forgot password?</Link>
+                    <Link href="/auth/forgot-password">Forgot password?</Link>
                 </div>
 
                 <Button type="submit" fullWidth isLoading={isLoading}>
@@ -78,7 +78,7 @@ const Login: React.FC = () => {
                 </Button>
 
                 <div className={styles.loginCardFooter}>
-                    Don't have an account? <Link href="/register" className={styles.signupLink}>Sign up</Link>
+                    Don't have an account? <Link href="/auth/register" className={styles.signupLink}>Sign up</Link>
                 </div>
             </form>
         </AuthLayout>

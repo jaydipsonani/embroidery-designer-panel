@@ -19,7 +19,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, title }) =>
 
     useEffect(() => {
         if (!isLoading && !user) {
-            router.push('/login');
+            router.push('/auth/login');
         }
     }, [isLoading, user, router]);
 

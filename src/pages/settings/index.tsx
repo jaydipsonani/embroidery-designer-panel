@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DashboardLayout from '../../components/DashboardLayout';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
+import Button from '../../components/modules/Button';
+import Input from '../../components/modules/Input';
 import styles from './Settings.module.scss';
 import FileUpload from '../../components/FileUpload';
 import { toastSuccess } from '../../lib';

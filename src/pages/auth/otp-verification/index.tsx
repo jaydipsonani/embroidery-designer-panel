@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthLayout from '../../components/AuthLayout';
+import AuthLayout from '../../../components/AuthLayout';
 import OtpVerification from '@/components/otpVerification';
 
 const OtpVerificationPage: React.FC = () => {

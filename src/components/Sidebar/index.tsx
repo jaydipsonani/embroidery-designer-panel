@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import styles from './Sidebar.module.scss';
 import { FiGrid, FiUploadCloud, FiLayers, FiLogOut, FiSettings, FiDollarSign, FiX, FiBarChart2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
-import Modal from '../Modal';
+import Modal from '../modules/Modal';
 import { Button } from 'react-bootstrap';
 
 interface SidebarProps {
@@ -78,9 +78,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, isCollapsed, onToggl
                     {!isCollapsed && <p className={styles.sectionTitle} style={{ marginTop: '2rem' }}>ACCOUNT</p>}
                     <ul className={styles.navList}>
                         <li>
-                            <Link 
-                                href="/settings" 
-                                className={`${styles.navItem} ${isActive('/settings') ? styles.active : ''}`} 
+                            <Link
+                                href="/settings"
+                                className={`${styles.navItem} ${isActive('/settings') ? styles.active : ''}`}
                                 onClick={onClose}
                                 title={isCollapsed ? 'Settings' : ''}
                             >

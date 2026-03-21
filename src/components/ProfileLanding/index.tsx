@@ -9,7 +9,7 @@ const ProfileLanding: React.FC = () => {
   const router = useRouter();
 
   const handleJoinUs = () => {
-    router.push('/login');
+    router.push('/auth/login');
   };
 
   const features = [

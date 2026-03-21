@@ -4,8 +4,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { toastError, toastSuccess } from '@/utils';
 import nookies from 'nookies';
-import OTPInput from '@/components/otpInput';
-import { getRouteApi } from '@/utils/api';
+import OTPInput from '@/components/modules/otpInput';
 
 const OtpVerification = ({ email }: any) => {
   const [loading, setLoading] = useState(false);

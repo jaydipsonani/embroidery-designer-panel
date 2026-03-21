@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import DashboardLayout from '../../components/DashboardLayout';
-import Badge from '../../components/Badge';
-import Button from '../../components/Button';
-import Modal from '../../components/Modal';
+import Badge from '../../components/modules/Badge';
+import Button from '../../components/modules/Button';
+import Modal from '../../components/modules/Modal';
 import { useRouter } from 'next/router';
 import { FiEdit2, FiTrash2, FiPlus, FiEye } from 'react-icons/fi';
 import styles from './Designs.module.scss';
