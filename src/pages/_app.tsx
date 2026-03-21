@@ -3,7 +3,7 @@ import { AuthProvider } from '../context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../src/assets/styles/globals.scss';
-import '../styles/nprogress.scss';
+import '../assets/styles/nprogress.scss';
 import { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
 import NProgress from 'nprogress';

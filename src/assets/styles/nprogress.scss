@@ -1,5 +1,4 @@
-@use 'variables' as *;
-
+@import '../styles/main.scss';
 /* Make clicks pass-through */
 #nprogress {
     pointer-events: none;
@@ -7,7 +6,6 @@
 
 #nprogress .bar {
     background: $primary-color;
-
     position: fixed;
     z-index: 1031;
     top: 0;
