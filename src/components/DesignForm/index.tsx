@@ -6,11 +6,14 @@ import styles from './DesignForm.module.scss';
 import { useRouter } from 'next/router';
 import { toastError } from '../../lib';
 import { FileRejection } from 'react-dropzone';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { FiInfo } from 'react-icons/fi';
 
 // Constants
 const CATEGORIES = ['Floral', 'Abstract', 'Animals', 'Kids', 'Logos', 'Traditional'];
 const FORMATS = ['DST', 'PES', 'EMB']; // Only these allowed
 const HOOP_SIZES = ['4x4', '5x7', '6x10', '8x8', '8x12', 'Commercial'];
+const designImage = `/images/designImage.jpg`; // Placeholder, can be used in tooltip or elsewhere as needed
 
 interface DesignFormProps {
     initialValues?: any;
@@ -202,7 +205,30 @@ const DesignForm: React.FC<DesignFormProps> = ({ initialValues, mode, onSubmit, 
                     <h3>Media & Files</h3>
 
                     <div className={styles.uploadSection}>
-                        <label className={styles.label}>Preview Image (Mandatory)</label>
+                        <div className={styles.labelWithInfo}>
+                            <label className={styles.label}>Preview Image (Mandatory)</label>
+                            <OverlayTrigger
+                                placement="bottom"
+                                overlay={
+                                    <Tooltip id="preview-image-tooltip" className={styles.customTooltip}>
+                                        <div className={styles.tooltipContent}>
+                                            <p>Example of a high-quality design preview:</p>
+                                            <div className={styles.tooltipImage}>
+                                                <img 
+                                                    src={designImage}
+                                                    alt="Design Preview Example" 
+                                                />
+                                            </div>
+                                            <small>Showcase your work with clear, well-lit photos or digital renderings.</small>
+                                        </div>
+                                    </Tooltip>
+                                }
+                            >
+                                <span className={styles.infoIcon}>
+                                    <FiInfo size={16} />
+                                </span>
+                            </OverlayTrigger>
+                        </div>
                         <FileUpload
                             onDrop={setPreviewImage}
                             files={previewImage}

@@ -8,6 +8,8 @@ import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import styles from './register.module.scss'; // Reuse styles for links
 import { useRouter } from 'next/router';
 import { toastError, toastSuccess } from '@/lib';
+import axios from 'axios';
+import { restBaseUrl, restBcHeaders } from '@/utils/api';
 
 const Register: React.FC = () => {
     const [name, setName] = useState('');
@@ -53,6 +55,94 @@ const Register: React.FC = () => {
         router.push('/');
         setIsLoading(false);
     };
+
+    // const handleOnSubmitForm = async (e: any) => {
+    //     e.preventDefault();
+
+    //     if (loginData.password.length < 8) {
+    //         toastError('Password must be at least 8 characters long.');
+    //         return;
+    //     }
+
+    //     const requirements = [
+    //         { regex: /[a-zA-Z]/, message: 'one letter (uppercase or lowercase)' },
+    //         { regex: /\d/, message: 'one number' },
+    //         { regex: /[@$!%*?&]/, message: 'one special character (@$!%*?&)' },
+    //     ];
+
+    //     const missingRequirements = requirements
+    //         .filter((req) => !req.regex.test(loginData.password))
+    //         .map((req) => req.message);
+
+    //     if (missingRequirements.length > 0) {
+    //         toastError(
+    //             `Password must include at least ${missingRequirements.join(', ')}.`
+    //         );
+    //         return;
+    //     }
+
+    //     if (!loginData.confirmPassword) {
+    //         toastError('Confirm Password is required.');
+    //         return;
+    //     }
+
+    //     if (loginData.password !== loginData.confirmPassword) {
+    //         toastError('Password and Confirm Password do not match.');
+    //         return;
+    //     }
+
+    //     setLoading(true);
+    //     setIsglobalLoaderActive(true);
+
+    //     const payload = {
+    //         user_id: loginData.user_id,
+    //         email: loginData.email,
+    //         email_code: loginData.email_code,
+    //         name: loginData.fullName,
+    //         password: loginData.password,
+    //         company_name: loginData.companyName,
+    //         company_document: loginData.company_document,
+    //         country_code: loginData.country_code,
+    //         phone_number: loginData.phone_number,
+    //         currency: 'usd',
+    //     } as any;
+    //     const formData = new FormData();
+
+    //     Object.keys(payload).forEach((key) => {
+    //         if (payload[key] !== undefined && payload[key] !== null) {
+    //             formData.append(key, payload[key]);
+    //         }
+    //     });
+    //     try {
+    //         let response = await axios.post(
+    //             `${restBaseUrl}/distributor/authentication/register`,
+    //             formData,
+    //             {
+    //                 headers: {
+    //                     ...restBcHeaders,
+    //                     'content-type': 'multipart/form-data',
+    //                 },
+    //             }
+    //         );
+    //         if (response.data.success) {
+    //             setIsglobalLoaderActive(false);
+    //             nookies.set(null, 'is_Olysim_profile', 'true', {
+    //                 path: '/',
+    //                 maxAge: 60 * 60 * 24 * 365 * 10,
+    //             });
+    //             router.push(
+    //                 `/auth/otp-verification?email=${response?.data?.data?.dist_user?.email}`
+    //             );
+    //             // router.push('/verification');
+    //         } else {
+    //             toastError(response?.data?.message);
+    //             setIsglobalLoaderActive(false);
+    //         }
+    //     } finally {
+    //         setLoading(false);
+    //         setIsglobalLoaderActive(false);
+    //     }
+    // };
 
     return (
         <AuthLayout

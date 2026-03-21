@@ -33,96 +33,97 @@ const OtpVerification = ({ email }: any) => {
   }, [countdown]);
 
   const handleOnSubmitForm = async (e: any) => {
-    // e?.preventDefault();
-    // setLoading(true);
-
-    // let payload = {
-    //   email: email,
-    //   email_code: inputValue,
-    // };
-
-    // try {
-    //   const response =
-    //     await getRouteApi({
-    //       method: 'POST',
-    //       endPoint: 'distributor/authentication/verify-email',
-    //       body: payload,
-    //     });
-
-    //   if (response?.success) {
-    //     nookies.set(
-    //       null,
-    //       'distributOlyToken',
-    //       response?.data?.dist_user?.auth_token,
-    //       {
-    //         path: '/',
-    //         maxAge: 7 * 24 * 60 * 60,
-    //       }
-    //     );
-
-    //     nookies.set(
-    //       null,
-    //       'active_status',
-    //       response?.data?.dist_user?.active_status,
-
-    //     );
-    //     nookies.set(
-    //       null,
-    //       'user_data',
-    //       JSON.stringify({
-    //         balance: response?.data?.dist_user?.balance,
-    //         company_address: response?.data?.dist_user?.company_address,
-    //         company_name: response?.data?.dist_user?.company_name,
-    //         email: response?.data?.dist_user?.email,
-    //         name: response?.data?.dist_user?.name,
-    //         phone_number: response?.data?.dist_user?.phone_number,
-    //         // currency: response?.data?.currency,
-    //       }),
-    //       {
-    //         path: '/',
-    //         maxAge: 7 * 24 * 60 * 60,
-    //       }
-    //     );
-    //     if (response?.data?.dist_user?.active_status === 1) {
-    //       router.push('/');
-    //     } else {
-    //       router.push('/verification');
-    //     }
-    //   } else {
-    //     throw new Error(response?.message);
-    //   }
-    // } catch (error: any) {
-    //   toastError(error.message);
-    // } finally {
-    //   setLoading(false);
-    // }
     router.push('/');
   };
-  const handleResendCode = async () => {
-    // setOtpLoading(true);
+  // const handleOnSubmitForm = async (e: any) => {
+  //   e?.preventDefault();
+  //   setLoading(true);
 
-    // if (email) {
-    //   let payload = {
-    //     email: email,
-    //   };
+  //   let payload = {
+  //     email: email,
+  //     email_code: inputValue,
+  //   };
+  //   try {
+  //     const response =
+  //       await getRouteApi({
+  //         method: 'POST',
+  //         endPoint: 'distributor/authentication/verify-email',
+  //         body: payload,
+  //       });
 
-    //   const resendOtpRes = await getRouteApi({
-    //     method: 'POST',
-    //     endPoint: 'distributor/authentication/resend-otp',
-    //     body: payload,
-    //   });
+  //     if (response?.success) {
+  //       nookies.set(
+  //         null,
+  //         'distributOlyToken',
+  //         response?.data?.dist_user?.auth_token,
+  //         {
+  //           path: '/',
+  //           maxAge: 7 * 24 * 60 * 60,
+  //         }
+  //       );
 
-    //   if (resendOtpRes?.success) {
-    //     setOtpLoading(false);
-    //     resendOtpRes?.message && toastSuccess(resendOtpRes?.message);
-    //     setCountdown(60);
-    //     setCanResend(false);
-    //   } else {
-    //     setOtpLoading(false);
-    //     resendOtpRes?.message && toastError(resendOtpRes?.message);
-    //   }
-    // }
-  };
+  //       nookies.set(
+  //         null,
+  //         'active_status',
+  //         response?.data?.dist_user?.active_status,
+
+  //       );
+  //       nookies.set(
+  //         null,
+  //         'user_data',
+  //         JSON.stringify({
+  //           balance: response?.data?.dist_user?.balance,
+  //           company_address: response?.data?.dist_user?.company_address,
+  //           company_name: response?.data?.dist_user?.company_name,
+  //           email: response?.data?.dist_user?.email,
+  //           name: response?.data?.dist_user?.name,
+  //           phone_number: response?.data?.dist_user?.phone_number,
+  //           // currency: response?.data?.currency,
+  //         }),
+  //         {
+  //           path: '/',
+  //           maxAge: 7 * 24 * 60 * 60,
+  //         }
+  //       );
+  //       if (response?.data?.dist_user?.active_status === 1) {
+  //         router.push('/');
+  //       } else {
+  //         router.push('/verification');
+  //       }
+  //     } else {
+  //       throw new Error(response?.message);
+  //     }
+  //   } catch (error: any) {
+  //     toastError(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  // const handleResendCode = async () => {
+  //   setOtpLoading(true);
+
+  //   if (email) {
+  //     let payload = {
+  //       email: email,
+  //     };
+
+  //     const resendOtpRes = await getRouteApi({
+  //       method: 'POST',
+  //       endPoint: 'distributor/authentication/resend-otp',
+  //       body: payload,
+  //     });
+
+  //     if (resendOtpRes?.success) {
+  //       setOtpLoading(false);
+  //       resendOtpRes?.message && toastSuccess(resendOtpRes?.message);
+  //       setCountdown(60);
+  //       setCanResend(false);
+  //     } else {
+  //       setOtpLoading(false);
+  //       resendOtpRes?.message && toastError(resendOtpRes?.message);
+  //     }
+  //   }
+  // };
   return (
     <div>
       <div className={styles.mainOtpSection}>
@@ -157,9 +158,9 @@ const OtpVerification = ({ email }: any) => {
                               Didn’t Receive Code?{'  '}&nbsp;
                               <span
                                 className={styles.resendOtpText}
-                                onClick={handleResendCode}
+                              // onClick={handleResendCode}
                               >
-                                {otpLoading ? 'loading..' : 'Resend Code'}
+                                Resend Code
                               </span>
                             </p>
                           </>

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import AuthLayout from '../../../components/AuthLayout';
 import Input from '../../../components/modules/Input';
-import Button from '../../../components/modules/Button';
 import Link from 'next/link';
 import { FiMail, FiChevronLeft, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import styles from './forgotPassword.module.scss';
 import { useRouter } from 'next/router';
 import { toastSuccess } from '../../../lib';
 import { Col, Row } from 'react-bootstrap';
+import { toastError } from '@/utils';
 
 const ForgotPassword: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -20,11 +20,10 @@ const ForgotPassword: React.FC = () => {
 
     const [isOtpLoading, setIsOtpLoading] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-
     const router = useRouter();
 
     const handleGetOtp = async () => {
-        if (!email) return toastSuccess('Please enter your email');
+        if (!email) return toastError('Please enter your email');
         setIsOtpLoading(true);
         await new Promise(resolve => setTimeout(resolve, 1000));
         setIsOtpLoading(false);
@@ -40,6 +39,96 @@ const ForgotPassword: React.FC = () => {
         toastSuccess('Password reset successfully!');
         router.push('/auth/login');
     };
+
+    // const handleEmailVerify = async (e: React.FormEvent) => {
+    //     e.preventDefault();
+
+    //     setLoading(true);
+
+    //     try {
+    //         const response = await getRouteApi({
+    //             method: 'POST',
+    //             endPoint: 'distributor/authentication/forgot-password',
+    //             body: {
+    //                 email: inputValue.email,
+    //             },
+    //         });
+
+    //         if (response?.success) {
+    //             toastSuccess(response.message);
+    //             setIsVerified(true);
+    //         } else {
+    //             setIsClicked(true);
+    //             toastError(response?.message);
+    //         }
+    //     } catch (error) {
+    //         console.error('Forgot password error:', error);
+    //         toastError('An error occurred. Please try again.');
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
+
+    // const handlePasswordReset = async (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     if (!isVerified) {
+    //         toastError('Please verify your email before proceeding.');
+    //         return;
+    //     }
+    //     setLoading(true);
+
+
+    //     if (inputValue.password.length < 8) {
+    //         toastError('Password must be at least 8 characters long.');
+    //         setLoading(false);
+    //         return;
+    //     }
+
+    //     // Password must include at least one letter, one number, and one special character
+    //     const requirements = [
+    //         { regex: /[a-zA-Z]/, message: 'one letter (uppercase or lowercase)' },
+    //         { regex: /\d/, message: 'one number' },
+    //         { regex: /[@$!%*?&]/, message: 'one special character (@$!%*?&)' },
+    //     ];
+
+    //     const missingRequirements = requirements
+    //         .filter(req => !req.regex.test(inputValue.password))
+    //         .map(req => req.message);
+
+    //     if (missingRequirements.length > 0) {
+    //         toastError(`Password must include at least ${missingRequirements.join(', ')}.`);
+    //         setLoading(false);
+    //         return;
+    //     }
+    //     if (inputValue.password !== inputValue.confirmPassword) {
+    //         toastError('Password and Confirm Password do not match.');
+    //         setLoading(false);
+    //         return;
+    //     }
+
+    //     try {
+    //         const response = await getRouteApi({
+    //             method: 'POST',
+    //             endPoint: 'distributor/authentication/reset-password',
+    //             body: {
+    //                 email: inputValue.email,
+    //                 password: inputValue.password,
+    //                 otp: inputValue.otp,
+    //             },
+    //         });
+    //         if (response?.success) {
+    //             toastSuccess(response?.message);
+    //             router.push('/auth/signin');
+    //         } else {
+    //             toastError(response?.message || 'Password reset failed.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Reset password error:', error);
+    //         toastError('An error occurred. Please try again.');
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
     return (
         <AuthLayout

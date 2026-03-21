@@ -24,13 +24,13 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = '/profile';
     const response = NextResponse.redirect(url);
-    
+
     // Set the cookie on the redirect response so they don't get trapped in a loop
     response.cookies.set('designer_has_visited', 'true', {
       path: '/',
       maxAge: 60 * 60 * 24 * 365,
     });
-    
+
     return response;
   }
 
