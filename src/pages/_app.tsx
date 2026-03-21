@@ -3,45 +3,42 @@ import { AuthProvider } from '../context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.scss';
-import '../styles/nprogress.scss'; // Import custom nprogress styles
+import '../styles/nprogress.scss';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import NProgress from 'nprogress';
+import GlobalLoader from '@/components/globalLoader';
 
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 // Configure NProgress (optional)
 NProgress.configure({ showSpinner: false });
-
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
+    const [isglobalLoaderActive, setIsglobalLoaderActive] = useState(false);
+
 
   useEffect(() => {
-    const handleStart = () => {
-      NProgress.start();
-    };
+    window.history.scrollRestoration = 'manual';
+    const handleStart = () => setIsglobalLoaderActive(true);
+    const handleComplete = () => setIsglobalLoaderActive(false);
 
-    const handleComplete = () => {
-      NProgress.done();
-    };
-
-    const handleError = () => {
-      NProgress.done();
-    };
-
-    router.events.on('routeChangeStart', handleStart);
-    router.events.on('routeChangeComplete', handleComplete);
-    router.events.on('routeChangeError', handleError);
+    Router.events.on('routeChangeStart', handleStart);
+    Router.events.on('routeChangeComplete', handleComplete);
+    Router.events.on('routeChangeError', handleComplete);
 
     return () => {
-      router.events.off('routeChangeStart', handleStart);
-      router.events.off('routeChangeComplete', handleComplete);
-      router.events.off('routeChangeError', handleError);
+      Router.events.off('routeChangeStart', handleStart);
+      Router.events.off('routeChangeComplete', handleComplete);
+      Router.events.off('routeChangeError', handleComplete);
     };
-  }, [router]);
+  }, []);
 
   return (
     <AuthProvider>
       <Toaster position="top-right" />
-      {/* {loading && <GlobalLoader />} */}
+      <GlobalLoader isActive={isglobalLoaderActive} />
       <Component {...pageProps} />
     </AuthProvider>
   );

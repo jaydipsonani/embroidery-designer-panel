@@ -29,6 +29,7 @@ const DesignForm: React.FC<DesignFormProps> = ({ initialValues, mode, onSubmit, 
     const [description, setDescription] = useState(initialValues?.description || '');
     const [category, setCategory] = useState(initialValues?.category || '');
     const [stitchingCount, setStitchingCount] = useState(initialValues?.stitchingCount || '');
+    const [needleCount, setNeedleCount] = useState(initialValues?.needleCount || '');
     const [hoopSize, setHoopSize] = useState(initialValues?.hoopSize || '');
     const [selectedFormats, setSelectedFormats] = useState<string[]>(initialValues?.selectedFormats || []);
 
@@ -42,6 +43,7 @@ const DesignForm: React.FC<DesignFormProps> = ({ initialValues, mode, onSubmit, 
         if (!price || Number(price) <= 0) newErrors.price = "Price must be greater than zero";
         if (!category) newErrors.category = "Please select a category";
         if (!stitchingCount || Number(stitchingCount) <= 0) newErrors.stitchingCount = "Stitching count is required";
+        if (!needleCount || Number(needleCount) <= 0) newErrors.needleCount = "Needle count is required";
         if (!hoopSize) newErrors.hoopSize = "Please select a hoop size";
         if (selectedFormats.length === 0) newErrors.formats = "Select at least one supported format";
 
@@ -70,6 +72,7 @@ const DesignForm: React.FC<DesignFormProps> = ({ initialValues, mode, onSubmit, 
             description,
             category,
             stitchingCount,
+            needleCount,
             hoopSize,
             selectedFormats,
             previewImage,
@@ -139,6 +142,18 @@ const DesignForm: React.FC<DesignFormProps> = ({ initialValues, mode, onSubmit, 
                             onWheel={(e) => (e.target as HTMLInputElement).blur()}
                             error={errors.stitchingCount}
                         />
+                        <Input
+                            label="Needle Count"
+                            type="number"
+                            placeholder="e.g. 12"
+                            value={needleCount}
+                            onChange={(e) => setNeedleCount(e.target.value)}
+                            onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                            error={errors.needleCount}
+                        />
+                    </div>
+
+                    <div className={styles.row}>
                         <div className={styles.inputWrapper}>
                             <label className={styles.label}>Hoop Size</label>
                             <select

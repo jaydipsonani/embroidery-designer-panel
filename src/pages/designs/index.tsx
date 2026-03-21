@@ -6,7 +6,6 @@ import Modal from '../../components/Modal';
 import { useRouter } from 'next/router';
 import { FiEdit2, FiTrash2, FiPlus, FiEye } from 'react-icons/fi';
 import styles from './Designs.module.scss';
-import Link from 'next/link';
 
 const MOCK_DESIGNS = [
     { id: 1, name: 'Vintage Floral', price: 1200, status: 'PUBLISHED', date: '2025-01-20', sales: 12, category: 'Floral', imageUrl: 'https://placehold.co/100x100/4f46e5/ffffff?text=Floral' },

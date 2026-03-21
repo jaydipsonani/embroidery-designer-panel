@@ -62,18 +62,6 @@
     color: $primary-color;
     position: relative;
     display: inline-block;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 5px;
-      left: 0;
-      width: 100%;
-      height: 30%;
-      background-color: rgba($secondary-color, 0.2);
-      z-index: -1;
-      border-radius: $radius-sm;
-    }
   }
 
   @media (max-width: 768px) {

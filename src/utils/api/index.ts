@@ -6,7 +6,6 @@ import axios from 'axios';
 
 const handleOnRemoveUserData = async () => {
   nookies.destroy(null, 'embro_token', { path: '/' });
-  nookies.destroy(null, 'dist_percentage', { path: '/' });
   nookies.destroy(null, 'user_data', { path: '/' });
 };
 
