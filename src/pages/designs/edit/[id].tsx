@@ -15,7 +15,8 @@ const MOCK_DESIGNS = [
         stitchingCount: 15000,
         hoopSize: '5x7',
         formats: ['DST', 'PES'],
-        status: 'PUBLISHED'
+        status: 'PUBLISHED',
+        designType: 'Embroidery Design'
     },
     {
         id: 2,
@@ -26,7 +27,8 @@ const MOCK_DESIGNS = [
         stitchingCount: 22000,
         hoopSize: '6x10',
         formats: ['EMB'],
-        status: 'DRAFT'
+        status: 'DRAFT',
+        designType: 'Embroidery Design'
     },
 ];
 
@@ -49,7 +51,8 @@ const EditDesign: React.FC = () => {
                     description: foundDesign.description,
                     stitchingCount: foundDesign.stitchingCount,
                     hoopSize: foundDesign.hoopSize,
-                    selectedFormats: foundDesign.formats
+                    selectedFormats: foundDesign.formats,
+                    designType: foundDesign.designType
                 });
             } else {
                 toastError("Design not found");
