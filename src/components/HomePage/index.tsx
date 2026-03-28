@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiUploadCloud, FiGrid } from 'react-icons/fi';
+import { FiUploadCloud } from 'react-icons/fi';
 import styles from './homePage.module.scss';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';
